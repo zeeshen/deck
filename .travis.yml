@@ -1,10 +1,26 @@
 language: go
 
-env:
- - GO111MODULE=on
-
 go:
  - "1.12"
+
+notifications:
+  email: false
+
+addons:
+  postgresql: "9.5"
+
+env:
+  matrix:
+  - GO111MODULE=on KONG_VERSION=1.0.3
+  - GO111MODULE=on KONG_VERSION=1.1.1
+
+before_install:
+  - psql -c 'create database kong;' -U postgres
+  - psql -c 'create user kong;' -U postgres
+  - psql -c 'GRANT ALL PRIVILEGES ON DATABASE "kong" to kong;' -U postgres
+
+install:
+  - bash .ci/setup_kong.sh
 
 before_script:
  - go get golang.org/x/lint/golint
