@@ -263,17 +263,17 @@ func Get(client *kong.Client, config Config) (*utils.KongRawState, error) {
 	}
 	state.Plugins = plugins
 
-	certificates, err := GetAllCertificates(client, config.SelectorTags)
-	if err != nil {
-		return nil, err
-	}
-	state.Certificates = certificates
+	//certificates, err := GetAllCertificates(client, config.SelectorTags)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//state.Certificates = certificates
 
-	caCerts, err := GetAllCACertificates(client, config.SelectorTags)
-	if err != nil {
-		return nil, err
-	}
-	state.CACertificates = caCerts
+	//caCerts, err := GetAllCACertificates(client, config.SelectorTags)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//state.CACertificates = caCerts
 
 	snis, err := GetAllSNIs(client, config.SelectorTags)
 	if err != nil {
